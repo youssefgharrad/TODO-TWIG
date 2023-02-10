@@ -1,0 +1,248 @@
+
+<table border="2">
+<tr>
+    <td>
+    reference
+    </td>
+
+    <td>
+    titre 
+    </td>
+
+    <td>
+    descreption
+    </td>
+
+    <td>
+    nbr_participant
+    </td>
+
+
+</tr>
+
+{% set nbrf= 0%}
+{% for i in f %}
+<tr>
+        <td>
+    {{i.ref}}
+    </td>
+
+    <td>
+    {{i.Titre |upper}} 
+    </td>
+
+    <td>
+    {{i.Description}}
+    </td>
+
+    <td>
+    {{i.nb_participants}}
+    </td>
+</tr>
+{% set nbrf= nbrf +1%}
+{% endfor %}
+
+<tr>
+</tr>
+</table>
+
+<hr>
+<h2>
+les nombres des formations = {{nbrf}}
+</h2>
+<hr>
+
+
+{#5éme#}
+
+
+<table border="2">
+<tr>
+    <td>
+    reference
+    </td>
+
+    <td>
+    titre 
+    </td>
+
+    <td>
+    descreption
+    </td>
+
+
+
+</tr>
+
+
+{% for i in f %}
+{% if i.Description=='formation
+            theorique'%}
+<tr>
+        <td>
+    {{i.ref}}
+    </td>
+
+    <td>
+    {{i.Titre }} 
+    </td>
+
+    <td>
+    {{i.Description}}
+    </td>
+</tr>
+{% endif %}
+{% endfor %}
+
+<tr>
+</tr>
+</table>
+
+{#6éme#}
+
+{% set maxpar= 0 %}
+{% set titremax= '' %}
+{% for i in f %}
+{% if i.nb_participants >maxpar%}
+{% set maxpar= i.nb_participants %}
+{% set titremax= i.Titre %}
+{% endif %}  
+
+   
+{% endfor %}
+
+<h2>
+le titre de la formation ayant le plus grand nombre de participants :
+{{titremax}}
+</h2>
+
+<hr>
+{#7éme#}
+
+{% set maxpar= 0 %}
+{% for i in f %}
+
+{% set maxpar=maxpar+ i.nb_participants %}
+
+   
+{% endfor %}
+<h2>
+le nombre total de participants dans toutes les formations :
+{{maxpar}}
+</h2>
+
+
+<hr>
+{#8éme#}
+<h2>
+{% if f is empty %}
+le tableau vide 
+{%else%}
+le tableau contient des formation
+{% endif %}
+
+</h2>
+
+
+
+<hr>
+{#9éme#}
+
+
+<table border="2">
+<tr>
+    <td>
+    reference
+    </td>
+
+    <td>
+    titre 
+    </td>
+
+    <td>
+    descreption
+    </td>
+
+    <td>
+        button
+    </td>
+
+</tr>
+
+
+{% for i in f %}
+<tr>
+        <td>
+    {{i.ref}}
+    </td>
+
+    <td>
+    {{i.Titre }} 
+    </td>
+
+    <td>
+    {{i.Description}}
+    </td>
+
+    <td>
+    {% if i.nb_participants ==0%}
+
+<input type="submit" value="participer">
+{% endif %}  
+    </td>
+</tr>
+{% endfor %}
+
+<tr>
+</tr>
+</table>
+
+
+<hr>
+{#10éme#}
+
+
+<table border="2">
+<tr>
+    <td>
+    reference
+    </td>
+
+    <td>
+    titre 
+    </td>
+
+    <td>
+    descreption
+    </td>
+
+    <td>
+        button
+    </td>
+
+</tr>
+
+
+{% for i in f %}
+<tr>
+        <td>
+    {{i.ref}}
+    </td>
+
+    <td>
+    {{i.Titre }} 
+    </td>
+
+    <td>
+    {{i.Description}}
+    </td>
+
+    <td>
+    <a href ="{{path('participer',{'m':i.Titre})}}">participer</a>
+    </td>
+</tr>
+{% endfor %}
+
+<tr>
+</tr>
+</table>
