@@ -1,0 +1,9 @@
+<form method="post">
+<h1>Modifier une classe  </h1> 
+    {{ form_label(form.name, 'Nom de la classe') }}
+    {{ form_widget(form.name) }}
+    <br>
+    {{ form_widget(form._token) }}
+    <br>
+    <button type="submit" class="btn btn-primary">Modifier</button>
+</form>
