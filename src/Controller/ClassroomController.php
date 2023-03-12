@@ -105,6 +105,22 @@ public function supprimerclass(Request $request, ManagerRegistry $entityManager,
 
   
 }
+#[Route('/{id}/Moyenne', name: 'classroom_Moyenne')]
+    public function classroomAverage(Classroom $classroom, StudentRepository $studentRepository): Response
+    {
+        $students = $studentRepository->findBy(['classroom' => $classroom]);
+
+        $average = array_reduce($students, function ($sum, $student) {
+            return $sum + $student->getMoyenne();
+        }, 0) / count($students);
+
+        return $this->render('classrooms/Moyenne.html.twig', [
+            'classroom' => $classroom,
+            'average' => $average,
+        ]);
+    }
+
+
 
 
 }

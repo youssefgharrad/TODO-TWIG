@@ -5,6 +5,10 @@ namespace App\Controller;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Doctrine\Persistence\ManagerRegistry;
+use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\Form\Extension\Core\Type\TextType;
+use App\Entity\Club ;
 
 class ClubController extends AbstractController
 {
@@ -16,52 +20,47 @@ class ClubController extends AbstractController
         ]);
     }
 
-    #[Route('/getname/{nom}', name: 'getname')]
-    public function getname($nom): Response
-    {
-        return $this->render('club/index.html.twig', [
-            't'=>$nom 
-        ]);
-        
-    }
+    
 
-    #[Route('/detailname/{nom}', name: 'detail')]
-    public function detail($nom): Response
-    {
-        return $this->render('club/detail.html.twig', [
-            't'=>$nom 
-        ]);
-        
-    }
 
-    #[Route('/formation', name: 'formation')]
-    public function list(): Response
+    #[Route('/listerclub', name: 'listerclub')]
+    public function listerclub(ManagerRegistry $list): Response
     {
-        $formations = array(
-            array('ref' => 'form147', 'Titre' => 'Formation Symfony
-            4','Description'=>'formation pratique',
-            'date_debut'=>'12/06/2020', 'date_fin'=>'19/06/2020',
-            'nb_participants'=>19) ,
-            array('ref'=>'form177','Titre'=>'Formation SOA' ,
-            'Description'=>'formation
-            theorique','date_debut'=>'03/12/2020','date_fin'=>'10/12/2020',
-            'nb_participants'=>0),
-            array('ref'=>'form178','Titre'=>'Formation Angular' ,
-            'Description'=>'formation
-            theorique','date_debut'=>'10/06/2020','date_fin'=>'14/06/2020',
-            'nb_participants'=>12)) ;
         return $this->render('club/list.html.twig', [
-            'f'=> $formations
+            'p' => $repo->findAll(),
         ]);
-        
     }
 
-    #[Route('/participer/{m}', name: 'participer')]
-    public function participer($m): Response
+    #[Route('/ajouterclub', name: 'ajouterclub')]
+    public function ajouterclub(Request $request, ManagerRegistry $entityManager): Response
     {
-        return $this->render('club/detail.html.twig', [
-            't'=>$m 
+        $club = new Club();
+
+        $form = $this->createFormBuilder($club)
+            ->add('createdAt', TextType::class, [
+                'required' => true,
+                'constraints' => [new NotBlank()],
+            ])
+            ->getForm();
+
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            // récupérer les données du formulaire soumis
+            $club = $form->getData();
+            // si le champ createdAt est vide, le remplir avec la date actuelle
+            if (empty($club->getCreatedAt())) {
+                $club->setCreatedAt();
+            }
+            // persister l'entité en base de données
+            $entityManager->getManager()->persist($club);
+            $entityManager->getManager()->flush();
+            $this->addFlash('success', 'Le club a été ajouté.');
+            // rediriger vers la page d'affichage des clubs
+            return $this->redirectToRoute('getClub');
+        }
+        return $this->render('classroom/ajouterclass.html.twig', [
+            'form' => $form->createView(),
         ]);
-        
     }
 }

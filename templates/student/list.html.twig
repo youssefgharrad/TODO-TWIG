@@ -1,0 +1,25 @@
+
+<h2>liste de student</h2>
+<table border="2">
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>name</th>
+            <th>Editer</th>
+            
+        
+        </tr>
+    </thead>
+    <tbody>
+{%for f in p %}
+ <tr>
+                    <td>{{ f.nsc}}</td>
+                    <td>{{ f.Email }}</td>
+                   <td><a href="{{ path('modifierclass', {'id': f.nsc, 'email': f.Email}) }}">Editer</a></td>
+                   <td><a href="{{ path('supprimerclass', {'id': f.nsc}) }}">supprimer</a></td>
+
+                </tr>
+
+{%endfor%}
+  </tbody>
+</table>
