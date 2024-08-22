@@ -1,0 +1,26 @@
+<div *ngFor="let group of selectedGroups" class="group-card">
+    <mat-card class="example-card" appearance="outlined">
+        <mat-card-header>
+            <div mat-card-avatar class="group-avatar">
+                <img *ngIf="group.club?.logoUrl" [src]="'http://localhost:8081/' + group.club.logoUrl" alt="{{ group.nom }} logo" />
+            </div>
+            <mat-card-title>{{ group.nom }}</mat-card-title>
+            <mat-card-subtitle>{{ group.niveau }}</mat-card-subtitle>
+        </mat-card-header>
+        <mat-card-content>
+            <h4>Players:</h4>
+            <ul *ngIf="group.players && group.players.length > 0; else noPlayers">
+                <li *ngFor="let player of group.players">{{ player.fullname }}</li>
+            </ul>
+            <ng-template #noPlayers>
+                <p>No players in this group.</p>
+            </ng-template>
+        </mat-card-content>
+        <mat-card-actions>
+            <button mat-button color="primary" (click)="viewDetails(group)">View Details</button>
+        </mat-card-actions>
+    </mat-card>
+</div>
+<ng-template pTemplate="footer">
+    <button type="button" (click)="closeDialog()" pButton label="Close" icon="pi pi-times"></button>
+</ng-template>

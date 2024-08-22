@@ -1,0 +1,15 @@
+<p>session-detail works!</p>
+<div class="card p-fluid">
+    <h5>Horizontal</h5>
+    <form [formGroup]="detailForm" (ngSubmit)="createSession()">
+        <div class="field">
+            <label for="date">Fondation année</label>
+            <p-calendar [showIcon]="true" inputId="foundationYear" formControlName="date"></p-calendar>
+        </div>
+        <label for="objectif" htmlFor="email3" class="col-12 mb-2 md:col-2 md:mb-0">Email</label><br>
+        <div class="col-12 md:col-10">
+            <textarea rows="5" cols="30" placeholder="Your Message" formControlName="objectif" pInputTextarea></textarea>
+        </div>
+        <button pButton label="Create" class="custom-button"></button>
+    </form>
+</div>

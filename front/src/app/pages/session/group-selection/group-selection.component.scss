@@ -1,0 +1,64 @@
+
+.p-button-secondary {
+    background-color: #FAFAFA;
+    border: 1px solid #B7EF3F;
+    color: #B7EF3F;
+    &:hover {
+        background-color: #FAFAFA !important;;
+        border-color: #B7EF3F !important;;
+        color: #B7EF3F !important;;
+    }
+    &::selection{
+        background-color: #FAFAFA !important;;
+        border-color: #B7EF3F !important;;
+        color: #B7EF3F !important;;
+    }
+}
+
+.p-button-success {
+    background-color: #B7EF3F;
+    border-color: #B7EF3F;
+    color: #FAFAFA;
+    &:hover {
+        background-color: #B7EF3F !important;;
+        border-color: #B7EF3F !important;;
+        color: #FAFAFA !important;;
+    }
+    &::selection{
+        background-color: #B7EF3F !important;;
+        border-color: #B7EF3F !important;;
+        color: #FAFAFA !important;;
+    }
+}
+
+.button-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px; /* Adjust the space between buttons */
+}
+
+.button-item {
+    margin-bottom: 10px; /* Optional: space below each row of buttons */
+}
+
+::ng-deep .p-slider .ui-slider-range {
+    background-color: #4CAF50 !important; /* Line color */
+    height: 10px !important; /* Line thickness */
+}
+
+/* Slider handle (dot) */
+::ng-deep .p-slider .ui-slider-handle {
+    background-color: #B7EF3F !important; /* Dot color */
+    border-color: #B7EF3F !important; /* Dot border color */
+    width: 20px !important; /* Dot width */
+    height: 20px !important; /* Dot height */
+    border-radius: 50% !important; /* Dot shape */
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.3) !important; /* Dot shadow */
+}
+
+/* Slider track (unfilled line) */
+::ng-deep .p-slider .ui-slider {
+    background-color: #E0E0E0 !important; /* Unfilled line color */
+    height: 10px !important; /* Unfilled line thickness */
+}
+

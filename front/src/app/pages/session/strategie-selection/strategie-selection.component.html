@@ -1,0 +1,32 @@
+<p>strategie-selection works!</p>
+<h2>Quelle Stratégie souhaitez-vous travailler ?</h2>
+
+<h5>Défensif</h5>
+<div class="button-container">
+    <div *ngFor="let strategie of defensiveStrategies" class="button-item">
+        <button
+            pButton
+            pRipple
+            type="button"
+            [label]="strategie.description"
+            class="p-button-rounded"
+            [ngClass]="{'p-button-secondary': !isSelectedDef(strategie.description), 'p-button-success': isSelectedDef(strategie.description)}"
+            (click)="toggleStrategyDef(strategie.description)">
+        </button>
+    </div>
+</div>
+
+<h5>Offensif</h5>
+<div class="button-container">
+    <div *ngFor="let strategie of offensiveStrategies" class="button-item">
+        <button
+            pButton
+            pRipple
+            type="button"
+            [label]="strategie.description"
+            class="p-button-rounded"
+            [ngClass]="{'p-button-secondary': !isSelectedOff(strategie.description), 'p-button-success': isSelectedOff(strategie.description)}"
+            (click)="toggleStrategyOff(strategie.description)">
+        </button>
+    </div>
+</div>

@@ -1,0 +1,21 @@
+<h2>Combien du temp vous-avez besoin ?</h2>
+<div class="col-12">
+    <i class="fa-regular fa-clock"></i> {{ formatTime(valSlider) }}
+    <p-slider [(ngModel)]="valSlider" [max]="180" class="custom-slider" (onSlideEnd)="SlideChnage(valSlider)"></p-slider>
+</div>
+
+<h2>Qui ils sont les groupes impliqué ?</h2>
+
+<div class="button-container">
+    <div *ngFor="let group of allGroups" class="button-item">
+        <button
+            pButton
+            pRipple
+            type="button"
+            [label]="group.uLevel"
+            class="p-button-rounded"
+            [ngClass]="{'p-button-secondary': !isGroupSelected(group), 'p-button-success': isGroupSelected(group)}"
+            (click)="toggleGroupSelection(group)">
+        </button>
+    </div>
+</div>

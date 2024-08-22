@@ -1,0 +1,76 @@
+<p>session-validation works!</p>
+<h2>Organisez votre séance!</h2>
+
+<p-sidebar [(visible)]="visibleSidebar3" styleClass="p-sidebar-lg" [style]="{width:'30em', length:'100em'}" position="bottom" [baseZIndex]="10000">
+    <h3 style="font-weight:normal">Durée restante à ajouter: {{ leftovers }} min</h3>
+    <div class="example-box" *ngFor="let type of selectedSessionTypes; let i = index">
+        {{ type }}
+        <input type="range" min="0" [max]="maxDuration" [(ngModel)]="durations[i]" (input)="updateDurations(i, durations[i]); calculateLeftovers()">
+        <span>{{ durations[i] }} min</span>
+    </div>
+</p-sidebar>
+<button pButton type="button" (click)="visibleSidebar3 = true" icon="pi pi-arrow-down" class="p-button-warning mr-2"></button>
+
+<h2>Organisez votre séance!</h2>
+
+<button
+    popovertarget="session-type-popover"
+    pButton
+    type="button"
+    class="p-button-rounded fa-solid fa-plus">
+</button>
+
+<div popover id="session-type-popover">
+    <p *ngFor="let type of sessionTypes" (click)="selectSessionType(type)">
+        {{ type }}
+    </p>
+</div>
+
+<h4>Selected Session Types</h4>
+<div cdkDropList class="example-list" (cdkDropListDropped)="drop($event)">
+    <div class="example-box" *ngFor="let type of selectedSessionTypes; let i = index" cdkDrag>
+        {{ type }}
+        <button pButton type="button" icon="pi pi-times" class="p-button-danger" (click)="removeType(i)"></button>
+    </div>
+</div>
+
+
+
+<h4>Group Selectioner </h4>
+<div class="button-container">
+    <div *ngFor="let group of selectedGroups" class="button-item">
+        <button
+            pButton
+            pRipple
+            type="button"
+            [label]="group.uLevel"
+            class="p-button-rounded">
+        </button>
+    </div>
+</div>
+<h4>Offensive Selectioner </h4>
+<div class="button-container">
+    <div *ngFor="let group of storedOffensiveStrategies" class="button-item">
+        <button
+            pButton
+            pRipple
+            type="button"
+            [label]="group"
+            class="p-button-rounded">
+        </button>
+    </div>
+</div>
+<h4>Defensive Selectioner </h4>
+<div class="button-container">
+    <div *ngFor="let group of storedDefensiveStrategies" class="button-item">
+        <button
+            pButton
+            pRipple
+            type="button"
+            [label]="group"
+            class="p-button-rounded">
+        </button>
+    </div>
+</div>
+<!-- Remove the form element -->
+<button (click)="save()" class="custom-button" style="margin-right: 13px;">Save</button>

@@ -1,0 +1,42 @@
+
+.p-button-secondary {
+    background-color: #FAFAFA;
+    border: 1px solid #B7EF3F;
+    color: #B7EF3F;
+    &:hover {
+        background-color: #FAFAFA !important;;
+        border-color: #B7EF3F !important;;
+        color: #B7EF3F !important;;
+    }
+    &::selection{
+        background-color: #FAFAFA !important;;
+        border-color: #B7EF3F !important;;
+        color: #B7EF3F !important;;
+    }
+}
+
+.p-button-success {
+    background-color: #B7EF3F;
+    border-color: #B7EF3F;
+    color: #FAFAFA;
+    &:hover {
+        background-color: #B7EF3F !important;;
+        border-color: #B7EF3F !important;;
+        color: #FAFAFA !important;;
+    }
+    &::selection{
+        background-color: #B7EF3F !important;;
+        border-color: #B7EF3F !important;;
+        color: #FAFAFA !important;;
+    }
+}
+
+.button-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px; /* Adjust the space between buttons */
+}
+
+.button-item {
+    margin-bottom: 10px; /* Optional: space below each row of buttons */
+}

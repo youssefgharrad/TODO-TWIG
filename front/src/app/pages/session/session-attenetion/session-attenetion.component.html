@@ -1,0 +1,15 @@
+<p>session-attenetion works!</p>
+<h2>Sur quoi souhaitez-vous vous concentrer ?</h2>
+<div class="button-container">
+    <div *ngFor="let attention of attention" class="button-item">
+        <button
+            pButton
+            pRipple
+            type="button"
+            [label]="attention"
+            class="p-button-rounded"
+            [ngClass]="{'p-button-secondary': !isSelectedOff(attention), 'p-button-success': isSelectedOff(attention)}"
+            (click)="toggleFocusAreas(attention)">
+        </button>
+    </div>
+</div>

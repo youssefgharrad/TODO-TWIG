@@ -1,0 +1,29 @@
+.player-pic {
+    width: 80px;
+    max-height: 70px;
+    display: block;
+    margin: 0 auto;
+    border-radius: 6%; /* Makes the image circular */
+}
+
+
+.player-pic2 {
+    max-width: 100px;
+    max-height: 100px;
+    display: block;
+    margin: 0 auto;
+    border-radius: 5%; /* Makes the image circular */
+}
+
+
+    .p-button-outlined {
+        background-color: #B7EF3F;
+        border-color: #FAFAFA;
+        color: #FAFAFA;
+
+        &:hover {
+            background-color: #abe13b !important;
+            color: #FAFAFA !important;
+        }
+    }
+

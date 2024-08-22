@@ -1,0 +1,91 @@
+@import "~@fortawesome/fontawesome-free/css/all.css";
+
+input[type="text"],
+input[type="number"] {
+    border: 1px solid #949494; // Match the default PrimeNG border
+    padding: 0.6em 0.75em; // Match padding
+    width: 100%;
+    box-sizing: border-box;
+    border-radius: 6px; // PrimeNG border-radius
+    font-size: 14px;
+    font-family: Arial, sans-serif;
+}
+
+input[type="text"]:focus,
+input[type="number"]:focus {
+    border-color: #B7EF3F; // Match focus border color
+    box-shadow: none; // PrimeNG doesn't use box-shadow
+    outline: none;
+}
+
+:host ::ng-deep .p-calendar:focus-within {
+    box-shadow: 0 0 5px #B7EF3F; /* Change to your desired color */
+    background-color: transparent; /* Set to your desired background color */
+    color: black; /* Set to your desired text color */
+    border-color :#B7EF3F ;
+}
+
+/* Change the selected color */
+:host ::ng-deep .p-calendar .p-datepicker table td.p-datepicker-today>span,
+.p-calendar .p-datepicker table td.p-datepicker-current-month>span {
+    background-color: #B7EF3F; /* Set to your desired selected color */
+    border-color :#B7EF3F ;
+    color: black; /* Set to your desired text color */
+    font-weight: bold;
+}
+
+.field label {
+    font-weight: bold;
+    margin-bottom: 0.5em;
+    display: inline-block;
+}
+
+
+.custom-button {
+    font-weight: bold;
+    background-color: #B7EF3F;
+    color: #FAFAFA;
+    border: none;
+    border-radius :8px ;
+    cursor: pointer;
+    padding: 0.5em 1em;
+    font-size: 1em;
+    transition: background-color 0.3s;
+}
+
+.custom-button:hover {
+    background-color: lighten(#B7EF3F, 10%);
+    border-color: lighten(#B7EF3F, 10%);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.file-upload-button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #B7EF3F;
+    border: 2px solid #B7EF3F;
+    border-radius: 50px;
+    padding: 10px 20px;
+    cursor: pointer;
+    transition: background-color 0.3s, border-color 0.3s, box-shadow 0.3s;
+    color: #FAFAFA;
+}
+
+.file-upload-button:hover {
+    background-color: lighten(#B7EF3F, 10%);
+    border-color: lighten(#B7EF3F, 10%);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.file-icon {
+    font-size: 24px;
+}
+
+input[type="file"] {
+    display: none;
+}
+
+::ng-deep .p-calendar  {
+    padding: 2px 4px !important;
+}

@@ -1,0 +1,49 @@
+    <div style="text-align: center;">
+        <h1 mat-dialog-title>Edit Club</h1>
+        <img src="./assets/demo/images/logo/logo.jpg" style="margin: 0 auto; max-width: 60px; height: auto;" alt="Club Logo">
+    </div>
+    <div mat-dialog-content class="dialog-content">
+    <form [formGroup]="editForm">
+        <table>
+            <tr>
+                <td><label for="nom">Nom</label></td>
+                <td><input pInputText id="nom" formControlName="nom" type="text" /></td>
+            </tr>
+            <tr>
+                <td><label for="president">President</label></td>
+                <td><input pInputText id="president" formControlName="president" type="text" /></td>
+            </tr>
+            <tr>
+                <td><label for="foundationYear">Foundation Year</label></td>
+                <td><p-calendar [showIcon]="true" inputId="foundationYear" formControlName="foundationYear"></p-calendar></td>
+            </tr>
+            <tr>
+                <td><label for="location">Location</label></td>
+                <td>
+                    <p-autoComplete
+                        formControlName="location"
+                        [suggestions]="filteredCountries"
+                        (completeMethod)="filterCountry($event)"
+                        (onSelect)="onCountrySelect($event)"
+                        field="name"
+                        [dropdown]="true"
+                        [inputStyle]="{'width': '100%'}">
+                        <ng-template let-country pTemplate="item">
+                            <div class="flex align-items-center gap-2">
+                                <img
+                                    src="https://primefaces.org/cdn/primeng/images/demo/flag/flag_placeholder.png"
+                                    [class]="'flag flag-' + country.code.toLowerCase()"
+                                    style="width: 18px" />
+                                <div>{{ country.name }}</div>
+                            </div>
+                        </ng-template>
+                    </p-autoComplete>
+                </td>
+            </tr>
+        </table>
+    </form>
+</div>
+<div mat-dialog-actions>
+    <button pButton class="p-button-outlined" (click)="onCancel()">Cancel</button>
+    <button pButton class="p-button-outlined" type="submit" (click)="onSave()">Save</button>
+</div>

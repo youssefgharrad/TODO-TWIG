@@ -1,0 +1,50 @@
+<div class="card">
+    <p-table #dt [value]="clubs" [rows]="10" [paginator]="true" [globalFilterFields]="['nom', 'president']" class="table-view" responsiveLayout="scroll"  styleClass="p-datatable-gridlines">
+        <ng-template pTemplate="caption">
+            <div class="flex justify-content-between flex-column sm:flex-row">
+                <button pButton label="Add" class="p-button-outlined mb-2" icon="pi pi-plus" (click)="openClubCreate()"></button>
+                <span class="p-input-icon-left mb-2">
+                    <i class="pi pi-search"></i>
+                    <input pInputText type="text" #globalFilter (input)="onGlobalFilter(dt, $event)" placeholder="Search by name or president" class="w-full"/>
+                </span>
+            </div>
+        </ng-template>
+        <ng-template pTemplate="header">
+            <tr>
+                <th style="text-align: center;">Logo</th>
+                <th>Nom</th>
+                <th>Président</th>
+                <th>Fondation Année</th>
+                <th>Location</th>
+                <th>Group</th>
+                <th>Actions</th>
+            </tr>
+        </ng-template>
+        <ng-template pTemplate="body" let-club>
+            <tr>
+                <td>
+                    <img *ngIf="club.logoUrl" [src]="'http://localhost:8081/' + club.logoUrl" alt="Club Logo" class="club-logo">
+                </td>
+                <td>{{ club.nom }}</td>
+                <td>{{ club.president }}</td>
+                <td>{{ club.foundationYear }}</td>
+                <td>{{ club.location }}</td>
+                <td>
+                    <button pButton icon="fa-solid fa-plus" class="p-button-danger invisible-bg" (click)="openGroupCreateDialog(club)"></button>
+                    <button pButton icon="fa-regular fa-eye" class="p-button-danger invisible-bg" (click)="openGroupList(club)"></button>
+                </td>
+                <td>
+                    <button pButton style="margin-right:16px" icon="fa-solid fa-trash-can" class="p-button-danger invisible-bg" (click)="deleteClub(club.id)"></button>
+                    <button pButton icon="fa-solid fa-pen" class="p-button-danger invisible-bg" (click)="openEditDialog(club)"></button>
+                </td>
+
+
+            </tr>
+        </ng-template>
+        <ng-template pTemplate="emptymessage">
+            <tr>
+                <td colspan="6">No clubs found.</td>
+            </tr>
+        </ng-template>
+    </p-table>
+</div>

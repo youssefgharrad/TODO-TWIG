@@ -1,0 +1,35 @@
+<!-- joueur-create-dialog.component.html -->
+<h2>Add Joueur</h2>
+<form [formGroup]="joueurForm" (ngSubmit)="save()">
+    <div class="field">
+        <label for="pictureUrl" class="file-upload-button">
+            <span class="file-icon">
+                <i class="fa-regular fa-file-image"></i>
+            </span>
+            <input type="file" id="pictureUrl" (change)="onImageSelected($event)" formControlName="pictureUrl" />
+        </label>
+    </div>
+    <div class="field">
+        <label for="fullname">Full Name</label>
+        <input id="fullname" formControlName="fullname" type="text" />
+    </div>
+    <div class="field">
+        <label for="position">Position</label>
+        <input id="position" formControlName="position" type="text" />
+    </div>
+    <div class="field">
+        <label for="jerseyNumber">Jersey Number</label>
+        <input id="jerseyNumber" formControlName="jerseyNumber" type="number" />
+    </div>
+    <div class="field">
+        <label for="valeur">Valeur</label>
+        <input id="valeur" formControlName="valeur" type="number" step="0.01" />
+    </div>
+    <div class="field">
+        <label for="bday">Birthday</label><br>
+        <p-calendar [showIcon]="true"     [showOnFocus]="false"  id="bday" inputId="bday" formControlName="bday"></p-calendar>
+    </div>
+
+    <button type="submit" class="custom-button" style="margin-right: 13px;">Save</button>
+    <button type="button" class="custom-button" (click)="close()">Cancel</button>
+</form>

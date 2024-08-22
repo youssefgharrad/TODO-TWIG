@@ -1,0 +1,39 @@
+.group-card {
+    margin-bottom: 20px;
+}
+
+mat-card {
+    width: 100%;
+    max-width: 600px;
+    margin: auto;
+}
+
+.group-avatar {
+    background-color: #B7EF3F; /* Use one of your preferred colors */
+    border-radius: 50%;
+}
+
+mat-card-title {
+    font-size: 1.5em;
+    color: #333; /* Adjust color for better contrast */
+}
+
+.group-avatar img {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+}
+
+mat-card-subtitle {
+    color: #666; /* Subtitle color */
+}
+
+mat-card-content h4 {
+    margin-top: 0;
+}
+
+@media (max-width: 768px) {
+    mat-card {
+        max-width: 100%;
+    }
+}
